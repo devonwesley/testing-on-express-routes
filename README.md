@@ -1,13 +1,8 @@
 ##Testing [ExpressJS](http://expressjs.com/) routes
-  
+
 ![Dummy Tesing](https://upload.wikimedia.org/wikipedia/en/c/c0/Crash_Dummie_SNES_Title.jpg)  
-  
- **Testing stack:**
- - [Mocha](https://mochajs.org/)
- - [Chai](http://chaijs.com/)
- - [Chai-http](https://github.com/chaijs/chai-http)
-    
-**Router & Database:**
- - [express](http://expressjs.com/)</li>
- - [PG-Promise](https://github.com/vitaly-t/pg-promise)
- - [Postgres](https://www.postgresql.org/)
+
+ **Testing stack:** | **Router & Database:**
+ - [Mocha](https://mochajs.org/) | [express](http://expressjs.com/)
+ - [Chai](http://chaijs.com/) | [PG-Promise](https://github.com/vitaly-t/pg-promise)
+ - [Chai-http](https://github.com/chaijs/chai-http) | [Postgres](https://www.postgresql.org/)
