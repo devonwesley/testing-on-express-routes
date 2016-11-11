@@ -1,5 +1,7 @@
 ##Testing [ExpressJS](http://expressjs.com/) routes
   
+![Dummy Tesing](./dummy-testing.png)  
+  
  **Testing stack:**
  - [Mocha](https://mochajs.org/)
  - [Chai](http://chaijs.com/)
