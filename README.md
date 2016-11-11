@@ -1,6 +1,6 @@
 ##Testing [ExpressJS](http://expressjs.com/) routes
   
-![Dummy Tesing](./dummy-testing.png)  
+![Dummy Tesing](https://upload.wikimedia.org/wikipedia/en/c/c0/Crash_Dummie_SNES_Title.jpg)  
   
  **Testing stack:**
  - [Mocha](https://mochajs.org/)
