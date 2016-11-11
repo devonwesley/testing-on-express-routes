@@ -1,0 +1,3 @@
+{
+  "postgres": "postgres://JusDev@localhost:5432/bookstore-test"
+}
