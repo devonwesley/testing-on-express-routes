@@ -7,14 +7,10 @@ const should = chai.should()
 chai.use(chaiHttp)
 
 describe('Books', () => {
-  beforeEach(done => {
-    User.deleteAllUsers()
-      .then(() => done() )
-      .catch(error => console.log('Deleting all users failed', error) )
-  })
+  beforeEach(done => User.deleteAllUsers().then(() => done()))
   describe('/POST user', () => {
     it('it should INSERT a user', (done) => {
-      let user = {name: 'Diane'}
+      const user = {name: 'Diane'}
       chai.request(server)
         .post('/user')
         .send(user)
@@ -28,19 +24,30 @@ describe('Books', () => {
   })
   describe('GET /user', () => {
     it('it should get a user', (done) => {
-      User
-        .insert('Devon')
+      User.insert('Devon')
         .then(id => {
           chai.request(server)
             .get('/user')
             .send(id)
-            .end((err, response) => {
-              console.log('GET USERS RSPONSE', response.body)
+            .end((error, response) => {
               response.should.have.status(200)
               response.body.should.be.a('object')
               response.body.should.have.property('message').eql('Success!!!')
               done()
             })
+        })
+    })
+  })
+  describe('GET /user', () => {
+    it('it should get a user', (done) => {
+      chai.request(server)
+        .get('/user')
+        .send( 'NOT AN ID' )
+        .end((err, response) => {
+          response.should.have.status(404)
+          response.body.should.be.a('object')
+          response.body.should.have.property('message').eql('No Users Found!!!')
+          done()
         })
     })
   })

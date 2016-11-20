@@ -11,8 +11,7 @@ const getUser = (request,response) =>
         if (user) {
           response.json({user, message: "Success!!!"})
         }
-
-        response.json({user, message: "No Users Found!!!"})
+        response.status(404).json({user, message: "No Users Found!!!"})
       })
       .catch(error => response.json({error,message: "Failure!!!"}) )
 
