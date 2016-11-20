@@ -20,12 +20,13 @@ const updateUser = (request,response) => {
   const {user_id} = request.params
   User.update({id: user_id, name})
     .then(user => response.json({user,message: 'User updated'}))
-    .catch(error => console.log(error))
 }
+
 const deleteUser = (request,response) => {
   const {user_id} = request.params
   User.deleteById(user_id)
     .then(() => response.json({message: 'Account Removed'}))
     .catch(error => response.json(error))
 }
+
 module.exports = {insertUsers, getUser, updateUser, deleteUser}
