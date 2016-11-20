@@ -45,7 +45,7 @@
 ### HTTP API
 
 **Action** | **CRUD** | **verb** | **path**
------------------- | ----------------------
+---------- | -------- | -------- | --------
 insertUser() | create | post | /user
 getUser() | read | get | /user
 updateUser() |  update | put | /user/:user_id
