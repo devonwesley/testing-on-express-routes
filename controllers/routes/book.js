@@ -8,7 +8,11 @@ const insertUsers = ( request, response ) =>
 const getUser = (request,response) =>
     User.findById( request.body.id )
       .then(user => {
-        response.json({user, message: "Success!!!"})
+        if (user) {
+          response.json({user, message: "Success!!!"})
+        }
+
+        response.json({user, message: "No Users Found!!!"})
       })
       .catch(error => response.json({error,message: "Failure!!!"}) )
 
