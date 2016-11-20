@@ -69,4 +69,20 @@ describe('Books', () => {
 
     })
   })
+  describe('DELETE /user/:user_id', () => {
+    it('it should delete a user', (done) => {
+      User.insert('Detele')
+        .then(userCreated => {
+          chai.request(server)
+            .delete(`/user/${userCreated.id}`)
+            .end((error, response) => {
+              console.log(response.body)
+              response.should.have.status(200)
+              response.body.should.be.a('object')
+              response.body.should.have.property('message').eql('Account Removed')
+              done()
+            })
+        })
+    })
+  })
 })
