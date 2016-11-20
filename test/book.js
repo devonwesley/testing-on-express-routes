@@ -12,7 +12,7 @@ describe('Books', () => {
     it('it should INSERT a user', (done) => {
       const user = {name: 'Diane'}
       chai.request(server)
-        .post('/user')
+        .post('/api/user')
         .send(user)
         .end((err, response) => {
           response.should.have.status(200)
@@ -27,7 +27,7 @@ describe('Books', () => {
       User.insert('JusDev')
         .then(user_id => {
           chai.request(server)
-            .get('/user')
+            .get('/api/user')
             .send(user_id)
             .end((error, response) => {
               response.should.have.status(200)
@@ -41,7 +41,7 @@ describe('Books', () => {
   describe('GET /user', () => {
     it('it should get a user', (done) => {
       chai.request(server)
-        .get('/user')
+        .get('/api/user')
         .send( 'NOT AN ID' )
         .end((err, response) => {
           response.should.have.status(404)
@@ -56,7 +56,7 @@ describe('Books', () => {
       User.insert('JusDev')
         .then(userCreated => {
           chai.request(server)
-            .put(`/user/${userCreated.id}`)
+            .put(`/api/user/${userCreated.id}`)
             .send({name: 'Not Devon'})
             .end((error, response) => {
               response.should.have.status(200)
@@ -74,7 +74,7 @@ describe('Books', () => {
       User.insert('Detele')
         .then(userCreated => {
           chai.request(server)
-            .delete(`/user/${userCreated.id}`)
+            .delete(`/api/user/${userCreated.id}`)
             .end((error, response) => {
               response.should.have.status(200)
               response.body.should.be.a('object')

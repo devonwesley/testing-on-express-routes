@@ -3,8 +3,8 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const config = require('config')
-const {insertUsers, getUser, updateUser, deleteUser} = require('./controllers/routes/book')
-const port = 8080
+const {insertUser, getUser, updateUser, deleteUser} = require('./controllers/routes/book')
+const port = 3000
 
 if(config.util.getEnv('NODE_ENV') !== 'test') app.use(morgan('combined'))
 
@@ -15,11 +15,11 @@ app.use(bodyParser.json({ type: 'application/json'}))
 
 app.get("/", (request, response) => response.json({message: "This is testing Routes 101"}))
 
-app.route("/user")
+app.route("/api/user")
   .get(getUser)
-  .post(insertUsers)
+  .post(insertUser)
 
-app.route('/user/:user_id')
+app.route('/api/user/:user_id')
   .put(updateUser)
   .delete(deleteUser)
 

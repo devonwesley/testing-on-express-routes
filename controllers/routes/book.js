@@ -1,6 +1,6 @@
 const { User } = require('../models/book')
 
-const insertUsers = ( request, response ) =>
+const insertUser = ( request, response ) =>
   User.insert( request.body.name )
     .then( id => response.json( { id, message: "Success!!!" } ) )
     .catch( error => response.json( { error, message: "Failure!!!" } ) )
@@ -29,4 +29,4 @@ const deleteUser = (request,response) => {
     .catch(error => response.json(error))
 }
 
-module.exports = {insertUsers, getUser, updateUser, deleteUser}
+module.exports = {insertUser, getUser, updateUser, deleteUser}
