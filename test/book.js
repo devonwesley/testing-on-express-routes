@@ -24,11 +24,11 @@ describe('Books', () => {
   })
   describe('GET /user', () => {
     it('it should get a user', (done) => {
-      User.insert('Devon')
-        .then(id => {
+      User.insert('JusDev')
+        .then(user_id => {
           chai.request(server)
             .get('/user')
-            .send(id)
+            .send(user_id)
             .end((error, response) => {
               response.should.have.status(200)
               response.body.should.be.a('object')
@@ -49,6 +49,24 @@ describe('Books', () => {
           response.body.should.have.property('message').eql('No Users Found!!!')
           done()
         })
+    })
+  })
+  describe('PUT /user/:user_id', () => {
+    it('it should update a users name', (done) => {
+      User.insert('JusDev')
+        .then(userCreated => {
+          chai.request(server)
+            .put(`/user/${userCreated.id}`)
+            .send({name: 'Not Devon'})
+            .end((error, response) => {
+              response.should.have.status(200)
+              response.body.should.be.a('object')
+              response.body.should.have.property('message').eql('User updated')
+              response.body.user.should.have.property('name').eql('Not Devon')
+              done()
+            })
+        })
+
     })
   })
 })

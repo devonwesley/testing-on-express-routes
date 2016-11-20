@@ -3,7 +3,7 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const config = require('config')
-const {insertUsers, getUser} = require('./controllers/routes/book')
+const {insertUsers, getUser, updateUser} = require('./controllers/routes/book')
 const port = 8080
 
 if(config.util.getEnv('NODE_ENV') !== 'test') app.use(morgan('combined'))
@@ -18,6 +18,9 @@ app.get("/", (request, response) => response.json({message: "This is testing Rou
 app.route("/user")
   .get(getUser)
   .post(insertUsers)
+
+app.route('/user/:user_id')
+  .put(updateUser)
 
 app.listen(port)
 

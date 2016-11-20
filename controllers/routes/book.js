@@ -6,13 +6,20 @@ const insertUsers = ( request, response ) =>
     .catch( error => response.json( { error, message: "Failure!!!" } ) )
 
 const getUser = (request,response) =>
-    User.findById( request.body.id )
-      .then(user => {
-        if (user) {
-          response.json({user, message: "Success!!!"})
-        }
-        response.status(404).json({user, message: "No Users Found!!!"})
-      })
-      .catch(error => response.json({error,message: "Failure!!!"}) )
+  User.findById( request.body.id )
+    .then(user => {
+      if (user) {
+        response.json({user, message: "Success!!!"})
+      }
+      response.status(404).json({user, message: "No Users Found!!!"})
+    })
+    .catch(error => response.json({error,message: "Failure!!!"}) )
 
-module.exports = { insertUsers, getUser }
+const updateUser = (request,response) => {
+  const {name} = request.body
+  const {user_id} = request.params
+  User.update({id: user_id, name})
+    .then(user => response.json({user,message: 'User updated'}))
+    .catch(error => console.log(error))
+}
+module.exports = {insertUsers, getUser, updateUser}
