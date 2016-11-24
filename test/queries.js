@@ -28,12 +28,26 @@ describe('Queries', () => {
           expect(users.length).to.eql(3)
           const userNames = ['Bobs', 'Ricky', 'Bobby']
           for (let i = 0; i < users.length; i++) {
-            expect(users[i]).to.have.property('id')
-            expect(users[i].id).to.be.a('number')
             expect(users[i]).to.be.a('object')
+            expect(users[i].id).to.be.a('number')
             expect(users[i].name).to.be.a('string')
             users[i].should.have.property('name').eql(userNames[i])
           }
+          done()
+        })
+      })
+    })
+  })
+  describe('SELECT a user', () => {
+    it('should get all users', done => {
+      User.insert('Jaylen').then(createdUser => {
+        const { id, name } = createdUser
+        User.findById(createdUser.id).then(userById => {
+          expect(userById).to.be.a('object')
+          expect(userById.id).to.be.a('number')
+          expect(userById.name).to.be.a('string')
+          userById.should.have.property('name').eql(name)
+          userById.should.have.property('id').eql(id)
           done()
         })
       })
