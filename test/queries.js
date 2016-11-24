@@ -3,7 +3,7 @@ const chai = require('chai')
 const should = chai.should()
 const expect = chai.expect
 
-describe('Queries', () => {
+describe('QUERIES', () => {
   beforeEach(done => User.deleteAllUsers().then(() => done()))
   describe('INSERT Queries', () => {
     it('it should insert a user into the databse', done => {
@@ -15,8 +15,7 @@ describe('Queries', () => {
       })
     })
   })
-
-  describe('SELECT a user', () => {
+  describe('SELECT ALL Queries', () => {
     it('should get all users', done => {
       Promise.all([
         User.insert('Bobs'),
@@ -38,8 +37,8 @@ describe('Queries', () => {
       })
     })
   })
-  describe('SELECT a user', () => {
-    it('should get all users', done => {
+  describe('SELECT USER QUERIES', () => {
+    it('should select a user by id', done => {
       User.insert('Jaylen').then(createdUser => {
         const { id, name } = createdUser
         User.findById(createdUser.id).then(userById => {
@@ -53,4 +52,20 @@ describe('Queries', () => {
       })
     })
   })
+  describe('UPDATE USER QUERIES', () => {
+    it('should update a user', done => {
+      User.insert('Tiana').then(createdUser => {
+        const { id, name } = createdUser
+        User.update({ id, name: 'Niners' }).then(updatedUser => {
+          expect(updatedUser).to.be.a('object')
+          expect(updatedUser.id).to.be.a('number')
+          expect(updatedUser.id).to.eql(id)
+          expect(updatedUser.name).to.be.a('string')
+          expect(updatedUser.name).to.eql('Niners')
+          done()
+        })
+      })
+    })
+  })
+
 })
