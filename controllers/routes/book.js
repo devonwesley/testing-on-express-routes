@@ -24,7 +24,7 @@ const updateUser = (request,response) => {
 
 const deleteUser = (request,response) => {
   const {user_id} = request.params
-  User.deleteById(user_id)
+  User.delete(user_id)
     .then(() => response.json({message: 'Account Removed'}))
     .catch(error => response.json(error))
 }

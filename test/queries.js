@@ -67,5 +67,17 @@ describe('QUERIES', () => {
       })
     })
   })
-
+  describe('DELETE BY ID', () => {
+    it('its should delete a user by id', done => {
+        User.insert('Sye').then(createdUser => {
+          const {id} = createdUser
+          User.delete(id).then(() => {
+            User.findById(id).then(noUser => {
+              expect(noUser).to.eql(null)
+              done()
+            })
+          })
+        })
+    })
+  })
 })

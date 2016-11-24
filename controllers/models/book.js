@@ -15,7 +15,7 @@ const User = {
   findById: id => db.oneOrNone(findUserById, [id]),
   list: () => db.any(listAllUsers),
   update: user => db.oneOrNone(updateUser, [user.name,user.id]),
-  deleteById: id => db.none(deleteUser, [id]),
+  delete: id => db.none(deleteUser, [id]),
   deleteAllUsers: () => db.none(deleteAllUsers)
 }
 
